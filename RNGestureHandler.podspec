@@ -6,7 +6,12 @@ isUserApp = File.exist?(File.join(__dir__, "..", "..", "node_modules", "react-na
 if isUserApp
   libInstances = %x[find ../../ -name "package.json" | grep "/react-native-gesture-handler/package.json" | grep -v "/.yarn/"]
   libInstancesArray = libInstances.split("\n")
-  if libInstancesArray.length() > 1
+
+  versions = libInstancesArray.map do |instance|
+    `node --print "require('#{instance}').version"`.chomp!
+  end
+
+  if versions.uniq.length() > 1
     parsedLocation = ''
     for location in libInstancesArray
       location['../../'] = '- '
