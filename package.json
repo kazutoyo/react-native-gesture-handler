@@ -148,5 +148,6 @@
     "name": "rngesturehandler_codegen",
     "type": "components",
     "jsSrcsDir": "./src/specs"
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }
